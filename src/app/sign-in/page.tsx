@@ -9,9 +9,9 @@ export default function SignIn() {
     // await axios.get('/api/test')
     e.preventDefault()
     const { data, error } = await authClient.signUp.email({
-      email: "anikrawat18@gmail.com", // user email address
-      password: "anikrawat", // user password -> min 8 characters by default
-      name: "anik", // user display name
+      email: "aryansrivastawa@gmail.com", // user email address
+      password: "aryansrivastawa", // user password -> min 8 characters by default
+      name: "aryan", // user display name
     }, {
       onRequest: (ctx) => {
         //show loading
@@ -28,19 +28,23 @@ export default function SignIn() {
     });
   }
 
-  const otp = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const { data, error } = await authClient.emailOtp.sendVerificationOtp({
-      email: "anikrawat18@gmail.com", // required
-      type: "email-verification", // required
-    }, {
-      onSuccess: (ctx) => {
-        console.log(ctx)
-        console.log("OTP sent successfully")
-      }
-    });
+  // const otp = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   const { data, error } = await authClient.emailOtp.sendVerificationOtp({
+  //     email: "aaryansrivastawa@gmail.com", // required
+  //     type: "email-verification", // required
+  //   }, {
+  //     onSuccess: (ctx) => {
+         
+  //     }
+  //   });
+  //   console.log(data)
+  // }
 
-    console.log(data)
+  const sendEmail = async (e: React.FormEvent) => {
+    e.preventDefault()
+    const result = await axios.get('/api/test-email')
+    console.log(result)
   }
 
   // const signIn = async (e: React.FormEvent) => {
@@ -70,21 +74,31 @@ export default function SignIn() {
   //     }
   //   })
   // }
-  const signIn = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const data = await authClient.signIn.social({
-      provider: "google",
-    }, {
-      onSuccess: () => {
-        console.log("Signed in with google successfully")
-      }
-    });
-  };
+
+  // const signIn = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   const data = await authClient.signIn.social({
+  //     provider: "google",
+  //   }, {
+  //     onSuccess: () => {
+  //       console.log("Signed in with google successfully")
+  //     }
+  //   });
+  // };
+
+  // const sendVerificationEmail = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   await authClient.sendVerificationEmail({
+  //     email: "aryansrivastawa@gmail.com",
+  //     callbackURL: "/", // The redirect URL after verification
+  //   });
+  // }
+
   return (
-    <form onSubmit={(e) => { otp(e) }} className="flex min-h-screen items-center justify-center font-sans ">
+    <form onSubmit={(e) => { signUp(e) }} className="flex min-h-screen items-center justify-center font-sans ">
       <input placeholder="email" />
       <input placeholder="password" />
-      <button type="submit">submit</button>
+      <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">submit</button>
     </form>
   );
 }
