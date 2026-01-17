@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import './globals.css'
+import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: "CMA PLATFORM",
@@ -13,8 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="dark">
         {children}
+        <Toaster />
       </body>
     </html>
   );

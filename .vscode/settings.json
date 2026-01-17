@@ -1,0 +1,22 @@
+{
+ "notebook.defaultFormatter": null,
+ "editor.defaultFormatter": null,
+ "[css]": {
+  "editor.defaultFormatter": "vscode.css-language-features"
+ },
+ "[jsonc]": {
+  "editor.defaultFormatter": "vscode.json-language-features"
+ },
+ "[typescript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+ },
+ "[typescriptreact]": {
+  "editor.defaultFormatter": "vscode.typescript-language-features"
+ },
+ "[javascript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+ },
+ "[javascriptreact]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+ },
+}
