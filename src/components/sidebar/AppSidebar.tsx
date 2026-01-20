@@ -14,6 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { AnimatedThemeToggler } from "../theme-togglers/animated-theme-toggler";
 
 export const sidebarMenu = [
   {
@@ -57,6 +58,10 @@ export function AppSidebar() {
             </Button>
           </Link>
         ))}
+        {/* Theme Toggle */}
+        <span className="flex justify-center items-center">
+          Theme: <AnimatedThemeToggler />
+        </span>
       </div>
     </div>
   );

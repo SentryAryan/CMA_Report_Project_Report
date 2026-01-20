@@ -10,8 +10,7 @@ export default function dashboard() {
       <AppSidebar />
       <div className="flex-1 p-1">
         <DashboardHeader />
-        <DashboardStats />
-        
+        <DashboardStats />       
       </div>
     </div>
   );
