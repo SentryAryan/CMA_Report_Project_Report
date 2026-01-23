@@ -1,9 +1,12 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FolderOpen, ArrowDown, Pencil, Trash } from "lucide-react";
-import reportsData from "@/data/reports.json";
+import { ArrowDown, Pencil, Trash } from "lucide-react";
 import DashboardCreateReportButton from "./DashboardCreateReportButton";
 import DashboardSearch from "./DashboardSearch";
+
+/* ================= TYPES ================= */
 
 type CMAReport = {
   id: string;
@@ -11,30 +14,36 @@ type CMAReport = {
   createdAt: string;
 };
 
-export default function CMAReports() {
-  const cmaReports: CMAReport[] = reportsData.cmaReports;
+/* ================= COMPONENT ================= */
 
+export default function CMAReports({
+  reports,
+}: {
+  reports: CMAReport[]; // ✅ DashboardPage se aane wala dynamic data
+}) {
   return (
     <div className="p-1 w-full">
-      <Card className="w-full bg-card ">
-        <CardHeader className="-mt-4 w-full" >
-          <CardTitle className="flex items-center justify-between w-full gap-2 text-md">
-            {/* <FolderOpen className="h-5 w-5 text-muted-foreground text-text" />
-            CMA REPORTS */}
-            <div className="flex items-center w-full justify-between px-4 mt-4">
-          <DashboardSearch />
-          <DashboardCreateReportButton />
-        </div> 
+      <Card className="w-full bg-card">
+        {/* ================= HEADER ================= */}
+        <CardHeader className="pt-2 pb-2 -mt-5">
+          <CardTitle className="flex items-center justify-between w-full text-md">
+            <span className="font-semibold">CMA REPORTS</span>
+
+            {/* Search + Create */}
+            <div className="flex items-center gap-3">
+              <DashboardSearch />
+              <DashboardCreateReportButton />
+            </div>
           </CardTitle>
         </CardHeader>
 
-        <CardContent>
-          <div className="overflow-x-auto -mt-6">
-            <table className="w-full text-sm  ">
-              {/* ✅ TABLE HEADER — ALWAYS VISIBLE */}
+        {/* ================= TABLE ================= */}
+        <CardContent className="pt-2">
+          <div className="overflow-x-auto -mt-10">
+            <table className="w-full text-sm">
               <thead className="border-b bg-muted/40">
-                <tr className="mt-0">
-                  <th className="px-4 py-3 text-left"> </th>
+                <tr>
+                  <th className="px-4 py-3 text-left"></th>
                   <th className="px-4 py-3 text-left">REPORT NAME</th>
                   <th className="px-4 py-3 text-left">CREATED DATE</th>
                   <th className="px-4 py-3 text-right">ACTIONS</th>
@@ -42,11 +51,10 @@ export default function CMAReports() {
               </thead>
 
               <tbody>
-                {/* ✅ DATA EXISTS */}
-                {cmaReports.length > 0 ? (
-                  cmaReports.map((report) => (
-                    <tr key={report.id} className="border-b -mt-4">
-                      <td className="px-4 py-3 font-medium">
+                {reports.length > 0 ? (
+                  reports.map((report) => (
+                    <tr key={report.id} className="border-b">
+                      <td className="px-4 py-3">
                         <Button
                           size="sm"
                           className="bg-green-600 hover:bg-green-700 p-2"
@@ -57,14 +65,16 @@ export default function CMAReports() {
                           />
                         </Button>
                       </td>
+
                       <td className="px-4 py-3 font-medium">
                         {report.name}
                       </td>
+
                       <td className="px-4 py-3 text-muted-foreground">
                         {report.createdAt}
                       </td>
-                      <td className="px-4 py-3 flex justify-end gap-2">
 
+                      <td className="px-4 py-3 flex justify-end gap-2">
                         <Button size="sm" variant="secondary">
                           <Pencil className="h-4 w-4" />
                         </Button>
@@ -75,21 +85,19 @@ export default function CMAReports() {
                     </tr>
                   ))
                 ) : (
-                  /* ✅ NO DATA ROW (but header still visible) */
                   <tr>
                     <td
-                      colSpan={3}
-                      className="px-4 py-10 text-center text-muted-foreground"
+                      colSpan={4}
+                      className="py-10 text-center text-muted-foreground"
                     >
-                      No CMA reports found. Click <b>Create CMA Report</b> to get started.
+                      No CMA reports found. Click{" "}
+                      <b>Create CMA Report</b> to get started.
                     </td>
                   </tr>
                 )}
               </tbody>
             </table>
           </div>
-
-
         </CardContent>
       </Card>
     </div>
