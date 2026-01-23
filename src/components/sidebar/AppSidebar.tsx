@@ -59,10 +59,10 @@ export function AppSidebar() {
   }
 
   return (
-    <div className="w-64 h-screen bg-Sidebar p-4">  {/* Sidebar fixed width, full height */}
-      <div className="mb-8">
+    <div className="w-50 h-screen bg-Sidebar p-4">  {/* Sidebar fixed width, full height */}
+       <div className="mb-8">
         <h2 className="text-2xl font-extrabold text-center text-foreground">
-          Dashboard
+          {/* Dashboard */}
         </h2>
 
       </div>
